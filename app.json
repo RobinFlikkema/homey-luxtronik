@@ -1,0 +1,262 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "nl.robinflikkema.rluxtronik",
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "rLuxtronik"
+  },
+  "description": {
+    "en": "Adds support for Luxtronik Devices.",
+    "nl": "Voegt Luxtronik apparaten toe aan homey!"
+  },
+  "category": [
+    "climate"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.jpg",
+    "large": "/assets/images/large.jpg",
+    "xlarge": "/assets/images/xlarge.jpg"
+  },
+  "author": {
+    "name": "Robin Flikkema",
+    "email": "robin@robinflikkema.nl"
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "RobinFlikkema"
+      },
+      "githubSponsors": {
+        "username": "RobinFlikkema"
+      }
+    }
+  },
+  "brandColor": "#0736ff",
+  "flow": {
+    "triggers": [
+      {
+        "id": "luxtronik_operationmode_changed",
+        "title": {
+          "en": "Operation Mode updated"
+        },
+        "tokens": [
+          {
+            "name": "luxtronik_operationmode",
+            "type": "string",
+            "title": {
+              "en": "Operation mode"
+            },
+            "example": {
+              "en": "Heating"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=luxtronik-2"
+          }
+        ]
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "name": {
+        "en": "Luxtronik"
+      },
+      "class": "heater",
+      "capabilities": [
+        "meter_power.total",
+        "meter_power.heat",
+        "meter_power.water",
+        "meter_power.pool",
+        "measure_water",
+        "measure_temperature.outdoor",
+        "measure_temperature.room_target",
+        "measure_temperature.room",
+        "measure_temperature.water_target",
+        "measure_temperature.water",
+        "measure_temperature.source_in",
+        "measure_temperature.source_out",
+        "measure_temperature.heating_supply",
+        "measure_temperature.heating_feedback",
+        "luxtronik_operationmode"
+      ],
+      "capabilitiesOptions": {
+        "measure_temperature.outdoor": {
+          "title": {
+            "en": "Outdoor temperature",
+            "nl": "Buitentemperatuur"
+          }
+        },
+        "measure_temperature.room": {
+          "title": {
+            "en": "Current room temperature",
+            "nl": "Huidige Ruimtetemperatuur"
+          }
+        },
+        "measure_temperature.room_target": {
+          "title": {
+            "en": "Target room temperature",
+            "nl": "Gewenste Ruimtetemperatuur"
+          }
+        },
+        "measure_temperature.water": {
+          "title": {
+            "en": "Current water temperature",
+            "nl": "Huidige tapwatertemperatuur"
+          }
+        },
+        "measure_temperature.water_target": {
+          "title": {
+            "en": "Target water temperature",
+            "nl": "Gewenste tapwatertemperatuur"
+          }
+        },
+        "measure_temperature.source_in": {
+          "title": {
+            "en": "Current source in",
+            "nl": "Huidige Bron-in"
+          }
+        },
+        "measure_temperature.source_out": {
+          "title": {
+            "en": "Current source out",
+            "nl": "Huidige Bron-uit"
+          }
+        },
+        "measure_temperature.heating_supply": {
+          "title": {
+            "en": "Aanvoer",
+            "nl": "Aanvoer"
+          }
+        },
+        "measure_temperature.heating_feedback": {
+          "title": {
+            "en": "Retour",
+            "nl": "Retour"
+          }
+        },
+        "meter_power.total": {
+          "title": {
+            "en": "Total Power Usage"
+          }
+        },
+        "meter_power.heat": {
+          "title": {
+            "en": "Total Heating Power Usage"
+          }
+        },
+        "meter_power.water": {
+          "title": {
+            "en": "Total Water Heating Power Usage"
+          }
+        },
+        "meter_power.pool": {
+          "title": {
+            "en": "Total Pool Heating Power Usage"
+          }
+        },
+        "measure_water": {
+          "units": {
+            "en": "L/hour",
+            "nl": "L/uur",
+            "de": "L/Stunde"
+          }
+        }
+      },
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/luxtronik-2/assets/images/small.png",
+        "large": "/drivers/luxtronik-2/assets/images/large.png",
+        "xlarge": "/drivers/luxtronik-2/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "enter_ip"
+        },
+        {
+          "id": "add_my_device",
+          "template": "add_devices"
+        }
+      ],
+      "id": "luxtronik-2"
+    }
+  ],
+  "capabilities": {
+    "luxtronik_operationmode": {
+      "type": "enum",
+      "title": {
+        "en": "Operation Mode"
+      },
+      "getable": true,
+      "uiComponent": "sensor",
+      "desc": {
+        "en": "Status of the Heatpump"
+      },
+      "values": [
+        {
+          "id": "Heating",
+          "title": {
+            "en": "Heating"
+          }
+        },
+        {
+          "id": "Hot Water",
+          "title": {
+            "en": "Hot Water"
+          }
+        },
+        {
+          "id": "Swimming Pool/Solar",
+          "title": {
+            "en": "Swimming Pool/Solar"
+          }
+        },
+        {
+          "id": "EVU",
+          "title": {
+            "en": "EVU"
+          }
+        },
+        {
+          "id": "Defrost",
+          "title": {
+            "en": "Defrost"
+          }
+        },
+        {
+          "id": "No Request",
+          "title": {
+            "en": "No Request"
+          }
+        },
+        {
+          "id": "Heating External",
+          "title": {
+            "en": "Heating External"
+          }
+        },
+        {
+          "id": "Cooling",
+          "title": {
+            "en": "Cooling"
+          }
+        }
+      ]
+    }
+  }
+}

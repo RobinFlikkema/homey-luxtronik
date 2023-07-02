@@ -1,0 +1,16 @@
+{
+    "triggers": [
+      {
+        "id": "luxtronik_operationmode_changed",
+        "title": { "en": "Operation Mode updated" },
+        "tokens": [
+            {
+              "name": "luxtronik_operationmode",
+              "type": "string",
+              "title": { "en": "Operation mode" },
+              "example": { "en": "Heating" }
+            }
+          ]
+      }
+    ]
+  }

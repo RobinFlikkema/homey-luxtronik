@@ -1,0 +1,126 @@
+{
+  "name": {
+    "en": "Luxtronik"
+  },
+  "class": "heater",
+  "capabilities": [
+    "meter_power.total",
+    "meter_power.heat",
+    "meter_power.water",
+    "meter_power.pool",
+    "measure_water",
+    "measure_temperature.outdoor",
+    "measure_temperature.room_target",
+    "measure_temperature.room",
+    "measure_temperature.water_target",
+    "measure_temperature.water",
+    "measure_temperature.source_in",
+    "measure_temperature.source_out",
+    "measure_temperature.heating_supply",
+    "measure_temperature.heating_feedback",
+    "luxtronik_operationmode"
+  ],
+  "capabilitiesOptions": {
+		"measure_temperature.outdoor": {
+			"title": {
+        "en": "Outdoor temperature",
+        "nl": "Buitentemperatuur"
+      }
+    },
+    "measure_temperature.room": {
+			"title": {
+        "en": "Current room temperature",
+        "nl": "Huidige Ruimtetemperatuur"
+      }
+    },
+    "measure_temperature.room_target": {
+			"title": {
+        "en": "Target room temperature",
+        "nl": "Gewenste Ruimtetemperatuur"
+      }
+    },
+    "measure_temperature.water": {
+			"title": {
+        "en": "Current water temperature",
+        "nl": "Huidige tapwatertemperatuur"
+      }
+    },
+    "measure_temperature.water_target": {
+			"title": {
+        "en": "Target water temperature",
+        "nl": "Gewenste tapwatertemperatuur"
+      }
+    },
+    "measure_temperature.source_in": {
+			"title": {
+        "en": "Current source in",
+        "nl": "Huidige Bron-in"
+      }
+    },
+    "measure_temperature.source_out": {
+			"title": {
+        "en": "Current source out",
+        "nl": "Huidige Bron-uit"
+      }
+    },
+    "measure_temperature.heating_supply": {
+			"title": {
+        "en": "Aanvoer",
+        "nl": "Aanvoer"
+      }
+    },
+    "measure_temperature.heating_feedback": {
+			"title": {
+        "en": "Retour",
+        "nl": "Retour"
+      }
+    },
+    "meter_power.total": {
+      "title": {
+        "en": "Total Power Usage"
+      }
+    },
+    "meter_power.heat": {
+      "title": {
+        "en": "Total Heating Power Usage"
+      }
+    },
+    "meter_power.water": {
+      "title": {
+        "en": "Total Water Heating Power Usage"
+      }
+    },
+    "meter_power.pool": {
+      "title": {
+        "en": "Total Pool Heating Power Usage"
+      }
+    },
+    "measure_water": {
+      "units": {
+        "en": "L/hour",
+        "nl": "L/uur",
+        "de": "L/Stunde"
+      }
+    }
+	},
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "lan"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+  },
+  "pair": [
+    {
+      "id": "enter_ip"
+    },
+    {
+      "id": "add_my_device",
+      "template": "add_devices"
+    }
+  ]
+}

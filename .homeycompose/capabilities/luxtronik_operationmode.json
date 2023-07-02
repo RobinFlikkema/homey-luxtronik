@@ -1,0 +1,41 @@
+{
+  "type": "enum",
+  "title": { "en": "Operation Mode" },
+  "getable": true,
+  "uiComponent": "sensor",
+  "desc": { "en": "Status of the Heatpump"},
+  "values": [
+    {
+        "id": "Heating",
+        "title": { "en": "Heating"}
+    },
+    {
+        "id": "Hot Water",
+        "title": { "en": "Hot Water"}
+    },
+    {
+        "id": "Swimming Pool/Solar",
+        "title": { "en": "Swimming Pool/Solar"}
+    },
+    {
+        "id": "EVU",
+        "title": { "en": "EVU"}
+    },
+    {
+        "id": "Defrost",
+        "title": { "en": "Defrost"}
+    },
+    {
+        "id": "No Request",
+        "title": { "en": "No Request"}
+    },
+    {
+        "id": "Heating External",
+        "title": { "en": "Heating External"}
+    },
+    {
+        "id": "Cooling",
+        "title": { "en": "Cooling"}
+    }
+  ]
+}
