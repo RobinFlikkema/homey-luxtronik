@@ -14,8 +14,6 @@ class LuxtronikDevice extends Device {
   async onInit() {
     this.log('LuxtronikDevice has been initialized');
 
-    this._data = this.getData();
-
     this.energyTotal = null;
     this.energyHeat = null;
     this.energyWater = null;
@@ -90,7 +88,7 @@ class LuxtronikDevice extends Device {
   }
 
   getHost() {
-    return this._data.host;
+    return this.getSettings().host;
   }
 
   /**
@@ -101,7 +99,7 @@ class LuxtronikDevice extends Device {
     const port = "8889";
     const interval = 36000;
     const timeout = 36000;
-    this.log(host, port, interval, timeout, this.getData())
+    this.log(host, port, interval, timeout)
     try {
       this.scanDevice(host, port, timeout);
 

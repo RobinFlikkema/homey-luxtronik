@@ -28,7 +28,7 @@ class MyDriver extends Driver {
     const devices = Object.values(discoveryResults).map(discoveryResult => {
       return {
         name: discoveryResult.address,
-        data: {
+        settings: {
           id: discoveryResult.address,
         },
       };
