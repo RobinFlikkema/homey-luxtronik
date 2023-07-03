@@ -113,12 +113,12 @@ class LuxtronikDevice extends Device {
       if (this.temperatureOutdoor) await this.setCapabilityValue('measure_temperature.outdoor', this.temperatureOutdoor / 10).catch(this.error);
       if (this.temperatureRoomCurrent) await this.setCapabilityValue('measure_temperature.room', this.temperatureRoomCurrent / 10).catch(this.error);
       if (this.temperatureRoomTarget) await this.setCapabilityValue('measure_temperature.room_target', this.temperatureRoomTarget / 10).catch(this.error);
-      if (this.temperatureRoomCurrent) await this.setCapabilityValue('measure_temperature.water', this.temperatureWaterCurrent / 10).catch(this.error);
-      if (this.temperatureRoomTarget) await this.setCapabilityValue('measure_temperature.water_target', this.temperatureWaterTarget / 10).catch(this.error);
-      if (this.temperatureRoomCurrent) await this.setCapabilityValue('measure_temperature.source_in', this.temperatureSourceIn / 10).catch(this.error);
-      if (this.temperatureRoomTarget) await this.setCapabilityValue('measure_temperature.source_out', this.temperatureSourceOut / 10).catch(this.error);
-      if (this.temperatureRoomCurrent) await this.setCapabilityValue('measure_temperature.heating_supply', this.temperatureHeatingSupply / 10).catch(this.error);
-      if (this.temperatureRoomTarget) await this.setCapabilityValue('measure_temperature.heating_feedback', this.temperatureHeatingFeedback / 10).catch(this.error);
+      if (this.temperatureWaterCurrent) await this.setCapabilityValue('measure_temperature.water', this.temperatureWaterCurrent / 10).catch(this.error);
+      if (this.temperatureWaterTarget) await this.setCapabilityValue('measure_temperature.water_target', this.temperatureWaterTarget / 10).catch(this.error);
+      if (this.temperatureSourceIn) await this.setCapabilityValue('measure_temperature.source_in', this.temperatureSourceIn / 10).catch(this.error);
+      if (this.temperatureSourceOut) await this.setCapabilityValue('measure_temperature.source_out', this.temperatureSourceOut / 10).catch(this.error);
+      if (this.temperatureHeatingSupply) await this.setCapabilityValue('measure_temperature.heating_supply', this.temperatureHeatingSupply / 10).catch(this.error);
+      if (this.temperatureHeatingFeedback) await this.setCapabilityValue('measure_temperature.heating_feedback', this.temperatureHeatingFeedback / 10).catch(this.error);
 
       if (this.water) await this.setCapabilityValue('measure_water', this.water).catch(this.error);
 
