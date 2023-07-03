@@ -190,7 +190,20 @@
           "template": "add_devices"
         }
       ],
-      "id": "luxtronik-2"
+      "id": "luxtronik-2",
+      "settings": [
+        {
+          "id": "host",
+          "type": "text",
+          "label": {
+            "en": "IP Address"
+          },
+          "value": "192.2.0.10",
+          "hint": {
+            "en": "The IP Address of the device."
+          }
+        }
+      ]
     }
   ],
   "capabilities": {

@@ -113,8 +113,11 @@
         } else {
             const newDevice = {
                 name: devicename,
-                data: {
+                settings: {
                     host: ip_address
+                },
+                data: {
+                    initialhost: ip_address
                 }
             };
 
