@@ -8,7 +8,7 @@
     "local"
   ],
   "name": {
-    "en": "rLuxtronik"
+    "en": "Luxtronik"
   },
   "description": {
     "en": "Adds support for Luxtronik Devices.",
@@ -29,9 +29,6 @@
   },
   "contributing": {
     "donate": {
-      "paypal": {
-        "username": "RobinFlikkema"
-      },
       "githubSponsors": {
         "username": "RobinFlikkema"
       }
