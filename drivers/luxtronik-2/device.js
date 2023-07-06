@@ -19,6 +19,7 @@ class LuxtronikDevice extends Device {
     this.energyWater = null;
     this.energyPool = null;
 
+    this.temperatureHotGas = null;
     this.temperatureOutdoor = null;
     this.temperatureRoomCurrent = null;
     this.temperatureRoomTarget = null;
@@ -111,6 +112,7 @@ class LuxtronikDevice extends Device {
       if (this.energyPool) await this.setCapabilityValue('meter_power.pool', this.energyPool / 10).catch(this.error);
 
       if (this.temperatureOutdoor) await this.setCapabilityValue('measure_temperature.outdoor', this.temperatureOutdoor / 10).catch(this.error);
+      if (this.temperatureHotGas) await this.setCapabilityValue('measure_temperature.hotgas', this.temperatureHotGas / 10).catch(this.error);
       if (this.temperatureRoomCurrent) await this.setCapabilityValue('measure_temperature.room', this.temperatureRoomCurrent / 10).catch(this.error);
       if (this.temperatureRoomTarget) await this.setCapabilityValue('measure_temperature.room_target', this.temperatureRoomTarget / 10).catch(this.error);
       if (this.temperatureWaterCurrent) await this.setCapabilityValue('measure_temperature.water', this.temperatureWaterCurrent / 10).catch(this.error);
@@ -236,6 +238,7 @@ class LuxtronikDevice extends Device {
           this.energyTotal = (array_calculated[154]);
 
           this.temperatureOutdoor = (array_calculated[15]);
+          this.temperatureHotGas = (array_calculated[14]);
           this.temperatureRoomCurrent = (array_calculated[227]);
           this.temperatureRoomTarget = (array_calculated[228]);
           this.temperatureWaterCurrent = (array_calculated[17]);

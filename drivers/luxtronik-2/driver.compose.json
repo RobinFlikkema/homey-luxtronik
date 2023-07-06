@@ -10,6 +10,7 @@
     "meter_power.pool",
     "measure_water",
     "measure_temperature.outdoor",
+    "measure_temperature.hotgas",
     "measure_temperature.room_target",
     "measure_temperature.room",
     "measure_temperature.water_target",
@@ -25,6 +26,13 @@
 			"title": {
         "en": "Outdoor temperature",
         "nl": "Buitentemperatuur"
+      }
+    },
+		"measure_temperature.hotgas": {
+			"title": {
+        "en": "Hot Gas temperature",
+        "nl": "Heetgas",
+        "de": "Heissgas"
       }
     },
     "measure_temperature.room": {
