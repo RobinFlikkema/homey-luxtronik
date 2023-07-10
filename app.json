@@ -11,8 +11,8 @@
     "en": "Luxtronik"
   },
   "description": {
-    "en": "Adds support for Luxtronik Devices.",
-    "nl": "Voegt Luxtronik apparaten toe aan homey!"
+    "en": "Use your heatpump to its full potential!",
+    "nl": "Gebruik alle mogelijkheden van je warmtepomp!"
   },
   "category": [
     "climate"
