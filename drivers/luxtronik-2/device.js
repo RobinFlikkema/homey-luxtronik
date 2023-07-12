@@ -106,25 +106,25 @@ class LuxtronikDevice extends Device {
 
       this.log("Triggering setCapabilityValue")
       
-      if (this.energyTotal) await this.setCapabilityValue('meter_power.total', this.energyTotal / 10).catch(this.error);
-      if (this.energyHeat) await this.setCapabilityValue('meter_power.heat', this.energyHeat / 10).catch(this.error);
-      if (this.energyWater) await this.setCapabilityValue('meter_power.water', this.energyWater / 10).catch(this.error);
-      if (this.energyPool) await this.setCapabilityValue('meter_power.pool', this.energyPool / 10).catch(this.error);
+      if (this.energyTotal !== null) await this.setCapabilityValue('meter_power.total', this.energyTotal / 10).catch(this.error);
+      if (this.energyHeat !== null) await this.setCapabilityValue('meter_power.heat', this.energyHeat / 10).catch(this.error);
+      if (this.energyWater !== null) await this.setCapabilityValue('meter_power.water', this.energyWater / 10).catch(this.error);
+      if (this.energyPool !== null) await this.setCapabilityValue('meter_power.pool', this.energyPool / 10).catch(this.error);
 
-      if (this.temperatureOutdoor) await this.setCapabilityValue('measure_temperature.outdoor', this.temperatureOutdoor / 10).catch(this.error);
-      if (this.temperatureHotGas) await this.setCapabilityValue('measure_temperature.hotgas', this.temperatureHotGas / 10).catch(this.error);
-      if (this.temperatureRoomCurrent) await this.setCapabilityValue('measure_temperature.room', this.temperatureRoomCurrent / 10).catch(this.error);
-      if (this.temperatureRoomTarget) await this.setCapabilityValue('measure_temperature.room_target', this.temperatureRoomTarget / 10).catch(this.error);
-      if (this.temperatureWaterCurrent) await this.setCapabilityValue('measure_temperature.water', this.temperatureWaterCurrent / 10).catch(this.error);
-      if (this.temperatureWaterTarget) await this.setCapabilityValue('measure_temperature.water_target', this.temperatureWaterTarget / 10).catch(this.error);
-      if (this.temperatureSourceIn) await this.setCapabilityValue('measure_temperature.source_in', this.temperatureSourceIn / 10).catch(this.error);
-      if (this.temperatureSourceOut) await this.setCapabilityValue('measure_temperature.source_out', this.temperatureSourceOut / 10).catch(this.error);
-      if (this.temperatureHeatingSupply) await this.setCapabilityValue('measure_temperature.heating_supply', this.temperatureHeatingSupply / 10).catch(this.error);
-      if (this.temperatureHeatingFeedback) await this.setCapabilityValue('measure_temperature.heating_feedback', this.temperatureHeatingFeedback / 10).catch(this.error);
+      if (this.temperatureOutdoor !== null) await this.setCapabilityValue('measure_temperature.outdoor', this.temperatureOutdoor / 10).catch(this.error);
+      if (this.temperatureHotGas !== null) await this.setCapabilityValue('measure_temperature.hotgas', this.temperatureHotGas / 10).catch(this.error);
+      if (this.temperatureRoomCurrent !== null) await this.setCapabilityValue('measure_temperature.room', this.temperatureRoomCurrent / 10).catch(this.error);
+      if (this.temperatureRoomTarget !== null) await this.setCapabilityValue('measure_temperature.room_target', this.temperatureRoomTarget / 10).catch(this.error);
+      if (this.temperatureWaterCurrent !== null) await this.setCapabilityValue('measure_temperature.water', this.temperatureWaterCurrent / 10).catch(this.error);
+      if (this.temperatureWaterTarget !== null) await this.setCapabilityValue('measure_temperature.water_target', this.temperatureWaterTarget / 10).catch(this.error);
+      if (this.temperatureSourceIn !== null) await this.setCapabilityValue('measure_temperature.source_in', this.temperatureSourceIn / 10).catch(this.error);
+      if (this.temperatureSourceOut !== null) await this.setCapabilityValue('measure_temperature.source_out', this.temperatureSourceOut / 10).catch(this.error);
+      if (this.temperatureHeatingSupply !== null) await this.setCapabilityValue('measure_temperature.heating_supply', this.temperatureHeatingSupply / 10).catch(this.error);
+      if (this.temperatureHeatingFeedback !== null) await this.setCapabilityValue('measure_temperature.heating_feedback', this.temperatureHeatingFeedback / 10).catch(this.error);
 
-      if (this.water) await this.setCapabilityValue('measure_water', this.water).catch(this.error);
+      if (this.water !== null) await this.setCapabilityValue('measure_water', this.water).catch(this.error);
 
-      if (this.operationMode.getOperationMode()) await this.setCapabilityValue('luxtronik_operationmode', this.operationMode.getOperationMode()).catch(this.error);
+      if (this.operationMode.getOperationMode() !== null) await this.setCapabilityValue('luxtronik_operationmode', this.operationMode.getOperationMode()).catch(this.error);
 
     } finally {
       this.scheduleScans(interval);
