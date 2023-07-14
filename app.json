@@ -35,6 +35,10 @@
     }
   },
   "brandColor": "#0736ff",
+  "bugs": {
+    "url": "https://github.com/RobinFlikkema/homey-luxtronik/issues"
+  },
+  "source": "https://github.com/RobinFlikkema/homey-luxtronik",
   "flow": {
     "triggers": [
       {
