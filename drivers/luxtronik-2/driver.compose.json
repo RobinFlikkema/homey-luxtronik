@@ -1,6 +1,7 @@
 {
   "name": {
-    "en": "Luxtronik"
+    "en": "Luxtronik",
+    "nl": "Luxtronik"
   },
   "class": "heater",
   "capabilities": [
@@ -24,83 +25,87 @@
   "capabilitiesOptions": {
 		"measure_temperature.outdoor": {
 			"title": {
-        "en": "Outdoor temperature",
+        "en": "Outdoor Temperature",
         "nl": "Buitentemperatuur"
       }
     },
 		"measure_temperature.hotgas": {
 			"title": {
-        "en": "Hot Gas temperature",
+        "en": "Hot Gas Temperature",
         "nl": "Heetgas",
         "de": "Heissgas"
       }
     },
     "measure_temperature.room": {
 			"title": {
-        "en": "Current room temperature",
+        "en": "Current Room Temperature",
         "nl": "Huidige Ruimtetemperatuur"
       }
     },
     "measure_temperature.room_target": {
 			"title": {
-        "en": "Target room temperature",
+        "en": "Target Room Temperature",
         "nl": "Gewenste Ruimtetemperatuur"
       }
     },
     "measure_temperature.water": {
 			"title": {
-        "en": "Current water temperature",
-        "nl": "Huidige tapwatertemperatuur"
+        "en": "Current Water Temperature",
+        "nl": "Huidige Tapwatertemperatuur"
       }
     },
     "measure_temperature.water_target": {
 			"title": {
-        "en": "Target water temperature",
-        "nl": "Gewenste tapwatertemperatuur"
+        "en": "Target Water Temperature",
+        "nl": "Gewenste Tapwatertemperatuur"
       }
     },
     "measure_temperature.source_in": {
 			"title": {
-        "en": "Current source in",
+        "en": "Current Source In",
         "nl": "Huidige Bron-in"
       }
     },
     "measure_temperature.source_out": {
 			"title": {
-        "en": "Current source out",
+        "en": "Current Source Out",
         "nl": "Huidige Bron-uit"
       }
     },
     "measure_temperature.heating_supply": {
 			"title": {
-        "en": "Aanvoer",
-        "nl": "Aanvoer"
+        "en": "Heating In",
+        "nl": "Verwarming Aanvoer"
       }
     },
     "measure_temperature.heating_feedback": {
 			"title": {
-        "en": "Retour",
-        "nl": "Retour"
+        "en": "Heating Return",
+        "nl": "Verwarming Retour"
       }
     },
     "meter_power.total": {
       "title": {
-        "en": "Total Power Usage"
+        "en": "Total Power Usage",
+        "nl": "Totale Warmteenergie"
       }
     },
     "meter_power.heat": {
       "title": {
-        "en": "Total Heating Power Usage"
+        "en": "Total Heating Power Usage",
+        "nl": "Totale Warmteenergie Verwarming"
       }
     },
     "meter_power.water": {
       "title": {
-        "en": "Total Water Heating Power Usage"
+        "en": "Total Water Heating Power Usage",
+        "nl": "Totale Warmteenergie Tapwater"
       }
     },
     "meter_power.pool": {
       "title": {
-        "en": "Total Pool Heating Power Usage"
+        "en": "Total Pool Heating Power Usage",
+        "nl": "Totale Warmteenergie Zwembad"
       }
     },
     "measure_water": {

@@ -14,6 +14,6 @@
       }
     },
     "capabilityNames": {
-      "measure_temperature.outdoor": "BuitenTemperatuur"
+      "measure_temperature.outdoor": "Outdoor Temperature"
     }
   }
