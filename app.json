@@ -8,7 +8,8 @@
     "local"
   ],
   "name": {
-    "en": "Luxtronik"
+    "en": "Luxtronik",
+    "nl": "Luxtronik"
   },
   "description": {
     "en": "Use your heatpump to its full potential!",
@@ -44,17 +45,20 @@
       {
         "id": "luxtronik_operationmode_changed",
         "title": {
-          "en": "Operation Mode updated"
+          "en": "Operation Mode updated",
+          "nl": "Warmtepompstatus bijgewerkt"
         },
         "tokens": [
           {
             "name": "luxtronik_operationmode",
             "type": "string",
             "title": {
-              "en": "Operation mode"
+              "en": "Operation mode",
+              "nl": "Apparaatstatus"
             },
             "example": {
-              "en": "Heating"
+              "en": "Heating",
+              "nl": "Verwamen"
             }
           }
         ],
@@ -71,7 +75,8 @@
   "drivers": [
     {
       "name": {
-        "en": "Luxtronik"
+        "en": "Luxtronik",
+        "nl": "Luxtronik"
       },
       "class": "heater",
       "capabilities": [
@@ -133,45 +138,49 @@
         "measure_temperature.source_in": {
           "title": {
             "en": "Current source in",
-            "nl": "Huidige Bron-in"
+            "nl": "Huidige bron-in"
           }
         },
         "measure_temperature.source_out": {
           "title": {
             "en": "Current source out",
-            "nl": "Huidige Bron-uit"
+            "nl": "Huidige bron-uit"
           }
         },
         "measure_temperature.heating_supply": {
           "title": {
-            "en": "Aanvoer",
-            "nl": "Aanvoer"
+            "en": "Heating in",
+            "nl": "Verwarming aanvoer"
           }
         },
         "measure_temperature.heating_feedback": {
           "title": {
-            "en": "Retour",
-            "nl": "Retour"
+            "en": "Heating return",
+            "nl": "Verwarming retour"
           }
         },
         "meter_power.total": {
           "title": {
-            "en": "Total Power Usage"
+            "en": "Total power usage",
+            "nl": "Totale warmteenergie"
           }
         },
         "meter_power.heat": {
           "title": {
-            "en": "Total Heating Power Usage"
+            "en": "Total heating power usage",
+            "nl": "Totale warmteenergie verwarming"
           }
         },
         "meter_power.water": {
           "title": {
-            "en": "Total Water Heating Power Usage"
+            "en": "Total water heating power usage",
+            "nl": "Totale warmteenergie tapwater"
           }
         },
         "meter_power.pool": {
           "title": {
-            "en": "Total Pool Heating Power Usage"
+            "en": "Total pool heating power usage",
+            "nl": "Totale warmteenergie zwembad"
           }
         },
         "measure_water": {
@@ -208,11 +217,13 @@
           "id": "host",
           "type": "text",
           "label": {
-            "en": "IP Address"
+            "en": "IP Address",
+            "nl": "IP-adres"
           },
           "value": "192.2.0.10",
           "hint": {
-            "en": "The IP Address of the device."
+            "en": "The IP Address of the device.",
+            "nl": "Het IP-adres van het apparaat"
           }
         }
       ]
@@ -222,60 +233,70 @@
     "luxtronik_operationmode": {
       "type": "enum",
       "title": {
-        "en": "Operation Mode"
+        "en": "Operation Mode",
+        "nl": "Huidige status"
       },
       "getable": true,
       "uiComponent": "sensor",
       "desc": {
-        "en": "Status of the Heatpump"
+        "en": "Status of the Heatpump",
+        "nl": "Huidige status van de warmptepomp"
       },
       "values": [
         {
           "id": "Heating",
           "title": {
-            "en": "Heating"
+            "en": "Heating",
+            "nl": "Verwarmen"
           }
         },
         {
           "id": "Hot Water",
           "title": {
-            "en": "Hot Water"
+            "en": "Hot Water",
+            "nl": "Warm Water"
           }
         },
         {
           "id": "Swimming Pool/Solar",
           "title": {
-            "en": "Swimming Pool/Solar"
+            "en": "Swimming Pool/Solar",
+            "nl": "Zwembad/Zonneboiler"
           }
         },
         {
           "id": "EVU",
           "title": {
-            "en": "EVU"
+            "en": "EVU",
+            "nl": "EVU"
           }
         },
         {
           "id": "Defrost",
           "title": {
-            "en": "Defrost"
+            "en": "Defrost",
+            "nl": "Ontdooien"
           }
         },
         {
           "id": "No Request",
           "title": {
-            "en": "No Request"
+            "en": "No Request",
+            "nl": "Geen vraag"
           }
         },
         {
           "id": "Heating External",
           "title": {
-            "en": "Heating External"
+            "en": "Heating External",
+            "nl": "Externe verwarming"
           }
         },
         {
           "id": "Cooling",
           "title": {
-            "en": "Cooling"
+            "en": "Cooling",
+            "nl": "Koelen"
           }
         }
       ]
