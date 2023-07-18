@@ -39,6 +39,7 @@
     "url": "https://github.com/RobinFlikkema/homey-luxtronik/issues"
   },
   "source": "https://github.com/RobinFlikkema/homey-luxtronik",
+  "homeyCommunityTopicId": 84826,
   "flow": {
     "triggers": [
       {

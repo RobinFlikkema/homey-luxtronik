@@ -37,5 +37,6 @@
   "bugs": {
     "url": "https://github.com/RobinFlikkema/homey-luxtronik/issues"
   },
-  "source": "https://github.com/RobinFlikkema/homey-luxtronik"
+  "source": "https://github.com/RobinFlikkema/homey-luxtronik",
+  "homeyCommunityTopicId": 84826
 }
