@@ -1,6 +1,7 @@
 {
   "name": {
-    "en": "Luxtronik"
+    "en": "Luxtronik",
+    "nl": "Luxtronik"
   },
   "class": "heater",
   "capabilities": [
@@ -62,45 +63,49 @@
     "measure_temperature.source_in": {
 			"title": {
         "en": "Current source in",
-        "nl": "Huidige Bron-in"
+        "nl": "Huidige bron-in"
       }
     },
     "measure_temperature.source_out": {
 			"title": {
         "en": "Current source out",
-        "nl": "Huidige Bron-uit"
+        "nl": "Huidige bron-uit"
       }
     },
     "measure_temperature.heating_supply": {
 			"title": {
-        "en": "Aanvoer",
-        "nl": "Aanvoer"
+        "en": "Heating in",
+        "nl": "Verwarming aanvoer"
       }
     },
     "measure_temperature.heating_feedback": {
 			"title": {
-        "en": "Retour",
-        "nl": "Retour"
+        "en": "Heating return",
+        "nl": "Verwarming retour"
       }
     },
     "meter_power.total": {
       "title": {
-        "en": "Total Power Usage"
+        "en": "Total power usage",
+        "nl": "Totale warmteenergie"
       }
     },
     "meter_power.heat": {
       "title": {
-        "en": "Total Heating Power Usage"
+        "en": "Total heating power usage",
+        "nl": "Totale warmteenergie verwarming"
       }
     },
     "meter_power.water": {
       "title": {
-        "en": "Total Water Heating Power Usage"
+        "en": "Total water heating power usage",
+        "nl": "Totale warmteenergie tapwater"
       }
     },
     "meter_power.pool": {
       "title": {
-        "en": "Total Pool Heating Power Usage"
+        "en": "Total pool heating power usage",
+        "nl": "Totale warmteenergie zwembad"
       }
     },
     "measure_water": {
