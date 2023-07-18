@@ -25,69 +25,69 @@
   "capabilitiesOptions": {
 		"measure_temperature.outdoor": {
 			"title": {
-        "en": "Outdoor temperature",
+        "en": "Outdoor Temperature",
         "nl": "Buitentemperatuur"
       }
     },
 		"measure_temperature.hotgas": {
 			"title": {
-        "en": "Hot Gas temperature",
+        "en": "Hot Gas Temperature",
         "nl": "Heetgas",
         "de": "Heissgas"
       }
     },
     "measure_temperature.room": {
 			"title": {
-        "en": "Current room temperature",
+        "en": "Current Room Temperature",
         "nl": "Huidige Ruimtetemperatuur"
       }
     },
     "measure_temperature.room_target": {
 			"title": {
-        "en": "Target room temperature",
+        "en": "Target Room Temperature",
         "nl": "Gewenste Ruimtetemperatuur"
       }
     },
     "measure_temperature.water": {
 			"title": {
-        "en": "Current water temperature",
-        "nl": "Huidige tapwatertemperatuur"
+        "en": "Current Water Temperature",
+        "nl": "Huidige Tapwatertemperatuur"
       }
     },
     "measure_temperature.water_target": {
 			"title": {
-        "en": "Target water temperature",
-        "nl": "Gewenste tapwatertemperatuur"
+        "en": "Target Water Temperature",
+        "nl": "Gewenste Tapwatertemperatuur"
       }
     },
     "measure_temperature.source_in": {
 			"title": {
-        "en": "Current source in",
-        "nl": "Huidige bron-in"
+        "en": "Current Source In",
+        "nl": "Huidige Bron-in"
       }
     },
     "measure_temperature.source_out": {
 			"title": {
-        "en": "Current source out",
-        "nl": "Huidige bron-uit"
+        "en": "Current Source Out",
+        "nl": "Huidige Bron-uit"
       }
     },
     "measure_temperature.heating_supply": {
 			"title": {
-        "en": "Heating in",
-        "nl": "Verwarming aanvoer"
+        "en": "Heating In",
+        "nl": "Verwarming Aanvoer"
       }
     },
     "measure_temperature.heating_feedback": {
 			"title": {
-        "en": "Heating return",
-        "nl": "Verwarming retour"
+        "en": "Heating Return",
+        "nl": "Verwarming Retour"
       }
     },
     "meter_power.total": {
       "title": {
-        "en": "Total power usage",
-        "nl": "Totale warmteenergie"
+        "en": "Total Power Usage",
+        "nl": "Totale Warmteenergie"
       }
     },
     "meter_power.heat": {
