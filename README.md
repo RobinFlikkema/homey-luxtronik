@@ -9,6 +9,7 @@ This app lets you add heatpumps to Homey from the following manufacturers:
 - Buderus
 - Nibe
 - Wolf Heiztechnik
+- Novelan
 
 Neither of these manufacturers are connected to this project. Some images used in this project are owned by Alpha Innotec.
 
