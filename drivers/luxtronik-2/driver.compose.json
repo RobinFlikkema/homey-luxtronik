@@ -92,20 +92,20 @@
     },
     "meter_power.heat": {
       "title": {
-        "en": "Total heating power usage",
-        "nl": "Totale warmteenergie verwarming"
+        "en": "Total Heating Power Usage",
+        "nl": "Totale Warmteenergie Verwarming"
       }
     },
     "meter_power.water": {
       "title": {
-        "en": "Total water heating power usage",
-        "nl": "Totale warmteenergie tapwater"
+        "en": "Total Water Heating Power Usage",
+        "nl": "Totale Warmteenergie Tapwater"
       }
     },
     "meter_power.pool": {
       "title": {
-        "en": "Total pool heating power usage",
-        "nl": "Totale warmteenergie zwembad"
+        "en": "Total Pool Heating Power Usage",
+        "nl": "Totale Warmteenergie Zwembad"
       }
     },
     "measure_water": {
