@@ -14,10 +14,19 @@ class LuxtronikDevice extends Device {
   async onInit() {
     this.log('LuxtronikDevice has been initialized');
 
+    // This if statement is needed to automatically add missing capabilities for people who
+    // already had the app setup, as new capabilities aren't added pro-actively.
+    if (this.hasCapability('measure_power.current') === false) {
+      this.log('measure_power.current has not been added yet, adding...');
+      await this.addCapability('measure_power.current');
+    }
+
     this.energyTotal = null;
     this.energyHeat = null;
     this.energyWater = null;
     this.energyPool = null;
+
+    this.energyCurrent = null;
 
     this.temperatureHotGas = null;
     this.temperatureOutdoor = null;
@@ -105,11 +114,13 @@ class LuxtronikDevice extends Device {
       this.scanDevice(host, port, timeout);
 
       this.log("Triggering setCapabilityValue")
-      
+
       if (this.energyTotal !== null) await this.setCapabilityValue('meter_power.total', this.energyTotal / 10).catch(this.error);
       if (this.energyHeat !== null) await this.setCapabilityValue('meter_power.heat', this.energyHeat / 10).catch(this.error);
       if (this.energyWater !== null) await this.setCapabilityValue('meter_power.water', this.energyWater / 10).catch(this.error);
       if (this.energyPool !== null) await this.setCapabilityValue('meter_power.pool', this.energyPool / 10).catch(this.error);
+
+      if (this.energyCurrent !== null) await this.setCapabilityValue('measure_power.current', this.energyCurrent).catch(this.error);
 
       if (this.temperatureOutdoor !== null) await this.setCapabilityValue('measure_temperature.outdoor', this.temperatureOutdoor / 10).catch(this.error);
       if (this.temperatureHotGas !== null) await this.setCapabilityValue('measure_temperature.hotgas', this.temperatureHotGas / 10).catch(this.error);
@@ -237,6 +248,8 @@ class LuxtronikDevice extends Device {
           this.energyPool = (array_calculated[153]);
           this.energyTotal = (array_calculated[154]);
 
+          this.energyCurrent = (array_calculated[257]);
+
           this.temperatureOutdoor = (array_calculated[15]);
           this.temperatureHotGas = (array_calculated[14]);
           this.temperatureRoomCurrent = (array_calculated[227]);
@@ -248,9 +261,10 @@ class LuxtronikDevice extends Device {
           this.temperatureHeatingSupply = (array_calculated[10]);
           this.temperatureHeatingFeedback = (array_calculated[11]);
 
+
           this.water = (array_calculated[173]);
 
-          
+
           this.operationMode.setOperationMode(array_calculated[80]);
 
           this.destroyClient();

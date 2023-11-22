@@ -108,6 +108,13 @@
         "nl": "Totale Warmteenergie Zwembad"
       }
     },
+    "measure_power.current": {
+      "title": {
+        "en": "Current Performance",
+        "nl": "Huidig Vermogen",
+        "de": "Leistung"
+      }
+    },
     "measure_water": {
       "units": {
         "en": "L/hour",
