@@ -7,5 +7,8 @@
   },
   "1.0.2": {
     "en": "Fixed Dutch and English Translations"
+  },
+  "1.0.3": {
+    "en": "Added support for Current Performance / \"Huidig Vermogen\""
   }
 }
