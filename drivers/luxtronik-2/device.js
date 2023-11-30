@@ -31,7 +31,7 @@ class LuxtronikDevice extends Device {
     this.energyInputCool = null;
     this.energyInputWater = null;
     this.energyInputPool = null;
-
+    
     this.energyCurrent = null;
 
     this.temperatureHotGas = null;
@@ -131,7 +131,7 @@ class LuxtronikDevice extends Device {
       if (this.energyInputCool !== null) await this.setCapabilityValue('meter_power.heat', this.energyCool / 100).catch(this.error);
       if (this.energyInputWater !== null) await this.setCapabilityValue('meter_power.water', this.energyWater / 100).catch(this.error);
       if (this.energyInputPool !== null) await this.setCapabilityValue('meter_power.pool', this.energyPool / 100).catch(this.error);
-
+      
       if (this.energyCurrent !== null) await this.setCapabilityValue('measure_power.current', this.energyCurrent).catch(this.error);
 
       if (this.temperatureOutdoor !== null) await this.setCapabilityValue('measure_temperature.outdoor', this.temperatureOutdoor / 10).catch(this.error);
@@ -358,6 +358,7 @@ class LuxtronikDevice extends Device {
 
     // Start executing commands sequentially
     executeCommands();
+
 
   }
 }
