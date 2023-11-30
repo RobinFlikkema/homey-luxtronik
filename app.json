@@ -186,8 +186,9 @@
         },
         "measure_power.current": {
           "title": {
-            "en": "Current Power",
-            "nl": "Huidig Vermogen"
+            "en": "Current Performance",
+            "nl": "Huidig Vermogen",
+            "de": "Leistung"
           }
         },
         "measure_water": {

@@ -26,6 +26,12 @@ class LuxtronikDevice extends Device {
     this.energyWater = null;
     this.energyPool = null;
 
+    this.energyInputTotal = null;
+    this.energyInputHeat = null;
+    this.energyInputCool = null;
+    this.energyInputWater = null;
+    this.energyInputPool = null;
+    
     this.energyCurrent = null;
 
     this.temperatureHotGas = null;
@@ -120,6 +126,12 @@ class LuxtronikDevice extends Device {
       if (this.energyWater !== null) await this.setCapabilityValue('meter_power.water', this.energyWater / 10).catch(this.error);
       if (this.energyPool !== null) await this.setCapabilityValue('meter_power.pool', this.energyPool / 10).catch(this.error);
 
+      if (this.energyInputTotal !== null) await this.setCapabilityValue('meter_power.total', this.energyTotal / 100).catch(this.error);
+      if (this.energyInputHeat !== null) await this.setCapabilityValue('meter_power.heat', this.energyHeat / 100).catch(this.error);
+      if (this.energyInputCool !== null) await this.setCapabilityValue('meter_power.heat', this.energyCool / 100).catch(this.error);
+      if (this.energyInputWater !== null) await this.setCapabilityValue('meter_power.water', this.energyWater / 100).catch(this.error);
+      if (this.energyInputPool !== null) await this.setCapabilityValue('meter_power.pool', this.energyPool / 100).catch(this.error);
+      
       if (this.energyCurrent !== null) await this.setCapabilityValue('measure_power.current', this.energyCurrent).catch(this.error);
 
       if (this.temperatureOutdoor !== null) await this.setCapabilityValue('measure_temperature.outdoor', this.temperatureOutdoor / 10).catch(this.error);
@@ -187,31 +199,25 @@ class LuxtronikDevice extends Device {
     this.client.once('error', onceEndOrError);
   }
 
-  scanDevice(host, port, timeout) {
-    const array_calculated = [];
-    this.destroyClient();
-    this.client = new net.Socket();
 
-    this.cancelCheck = this.homey.setTimeout(() => {
-      this.destroyClient();
-      this.log("???");
-    }, timeout);
-
-    this.client.on('error', (err) => {
-      //this.destroyClient();
-      if (err && (err.errno === "ECONNREFUSED" || err.code === "ECONNREFUSED")) {
-        this.log("Error on Socket")
-      } else {
-        this.log("No Error on Socket")
-      }
-    });
-
+  /**
+   * Send Commands to Luxtronik Devices. 
+   *
+   * This function can send commands to Luxtronik devices over TCP-sockets.
+   *
+   *
+   * @param {integer}  command      The command to send to the Luxtronik Controller.
+   * @param {string}   host         The IP of the Luxtronik Controller.
+   * @param {string}   [port=8889]  The port of the Luxtronik Controller. Default to the default Luxtronik port
+   *
+   */
+  sendCommand(command, host, port = 8889) {
     try {
       this.log("Trying to connect...");
       this.client.connect(port, host, () => {
         this.log("Connected!");
         const buffer = Buffer.alloc(4);
-        buffer.writeInt32BE(3004);
+        buffer.writeInt32BE(command);
         this.client.write(buffer);
 
         buffer.writeInt32BE(0);
@@ -222,58 +228,138 @@ class LuxtronikDevice extends Device {
       console.error(`Error: connection failed ${error}`);
       this.destroyClient();
     }
+  }
 
-    try {
+  scanDevice(host, port, timeout) {
+    // This is just here if a client already existed
+    this.destroyClient();
 
-      let receivedData = Buffer.alloc(0);
-      this.client.on('data', (data) => {
-        receivedData = Buffer.concat([receivedData, data]);
-        if (receivedData.length >= 12) {
-          const reqCalculatedCmd = receivedData.readInt32BE(0);
-          if (reqCalculatedCmd !== 3004) {
-            this.log('Error: REQ_CALCULATED CMD');
-          }
-          const stat = receivedData.readInt32BE(4);
-          const len = receivedData.readInt32BE(8);
+    const sendCommands = async (command) => {
+      return new Promise((resolve, reject) => {
 
+        this.client = new net.Socket();
+        let receivedData = Buffer.alloc(0);
 
-          let offset = 12;
-          for (let i = 0; i < len; i++) {
-            array_calculated.push(receivedData.readInt32BE(offset));
-            offset += 4;
-          }
-
-          this.energyHeat = (array_calculated[151]);
-          this.energyWater = (array_calculated[152]);
-          this.energyPool = (array_calculated[153]);
-          this.energyTotal = (array_calculated[154]);
-
-          this.energyCurrent = (array_calculated[257]);
-
-          this.temperatureOutdoor = (array_calculated[15]);
-          this.temperatureHotGas = (array_calculated[14]);
-          this.temperatureRoomCurrent = (array_calculated[227]);
-          this.temperatureRoomTarget = (array_calculated[228]);
-          this.temperatureWaterCurrent = (array_calculated[17]);
-          this.temperatureWaterTarget = (array_calculated[18]);
-          this.temperatureSourceIn = (array_calculated[19]);
-          this.temperatureSourceOut = (array_calculated[20]);
-          this.temperatureHeatingSupply = (array_calculated[10]);
-          this.temperatureHeatingFeedback = (array_calculated[11]);
-
-
-          this.water = (array_calculated[173]);
-
-
-          this.operationMode.setOperationMode(array_calculated[80]);
-
+        // This cancels the check if for some reason the check takes too long.
+        this.cancelCheck = this.homey.setTimeout(() => {
           this.destroyClient();
-        }
+          this.log("TIMEOUT");
+        }, timeout);
+
+        // This handles error if there are any, it is important to reject the promise here if needed.
+        this.client.on('error', (err) => {
+          this.destroyClient();
+          if (err && (err.errno === "ECONNREFUSED" || err.code === "ECONNREFUSED")) {
+            this.log("Error on Socket")
+            reject(err);
+          } else {
+            this.log("No Error on Socket")
+            reject(err);
+          }
+        });
+
+        this.client.on('data', (data) => {
+          receivedData = Buffer.concat([receivedData, data]);
+          if (receivedData.length >= 12) {
+            const reqCalculatedCmd = receivedData.readInt32BE(0);
+            if (reqCalculatedCmd == 3003) {
+              const array_parameter = [];
+              const len = receivedData.readInt32BE(4);
+              let expectedLength = 8 + len * 4;
+              if (receivedData.length >= expectedLength) {
+                let offset = 8;
+                for (let i = 0; i < len; i++) {
+                  array_parameter.push(receivedData.readInt32BE(offset));
+                  offset += 4;
+                }
+                // for (const [i, value] of array_parameter.entries()) {
+                //   this.log(i, value);
+                // }
+                this.log("PARAM HEAT_ENERGY_INPUT" + array_parameter[1136]);
+                this.log("PARAM WATER_ENERGY_INPUT" + array_parameter[1137]);
+                this.log("PARAM POOL_ENERGY_INPUT" + array_parameter[1138]);
+                this.log("PARAM COOL_ENERGY_INPUT" + array_parameter[1139]);
+                this.log("PARAM SECOND_ENERGY_INPUT" + array_parameter[1140]);
+                let energyInputTotal = array_parameter[1136] + array_parameter[1137] + array_parameter[1138] + array_parameter[1139] +array_parameter[1140]
+                this.log("PARAM TOTAL_ENERGY_INPUT" + energyInputTotal);
+
+                this.energyInputHeat = (array_parameter[1136]);
+                this.energyInputCool = (array_parameter[1139]);
+                this.energyInputWater = (array_parameter[1137]);
+                this.energyInputPool = (array_parameter[1138]);
+                this.energyInputTotal = (array_parameter[1136] + array_parameter[1137] + array_parameter[1138] + array_parameter[1139] +array_parameter[1140]);
+
+                this.destroyClient();
+                resolve(); // Resolve the promise once response is handled
+              }
+            } else if (reqCalculatedCmd == 3004) {
+
+              const array_calculated = [];
+              const stat = receivedData.readInt32BE(4);
+              const len = receivedData.readInt32BE(8);
+              let expectedLength = 12 + len * 4;
+              if (receivedData.length >= expectedLength) {
+                let offset = 12;
+                for (let i = 0; i < len; i++) {
+                  array_calculated.push(receivedData.readInt32BE(offset));
+                  offset += 4;
+                }
+                this.log("Received calculated data with Length ", len)
+
+                this.energyHeat = (array_calculated[151]);
+                this.energyWater = (array_calculated[152]);
+                this.energyPool = (array_calculated[153]);
+                this.energyTotal = (array_calculated[154]);
+
+                this.energyCurrent = (array_calculated[257]);
+
+                this.temperatureOutdoor = (array_calculated[15]);
+                this.temperatureHotGas = (array_calculated[14]);
+                this.temperatureRoomCurrent = (array_calculated[227]);
+                this.temperatureRoomTarget = (array_calculated[228]);
+                this.temperatureWaterCurrent = (array_calculated[17]);
+                this.temperatureWaterTarget = (array_calculated[18]);
+                this.temperatureSourceIn = (array_calculated[19]);
+                this.temperatureSourceOut = (array_calculated[20]);
+                this.temperatureHeatingSupply = (array_calculated[10]);
+                this.temperatureHeatingFeedback = (array_calculated[11]);
+
+
+                this.water = (array_calculated[173]);
+
+
+                this.operationMode.setOperationMode(array_calculated[80]);
+
+                this.destroyClient();
+
+                resolve(); // Resolve the promise once response is handled
+              }
+            } else {
+              this.log('Error: Received unknown command');
+
+              reject(); // Resolve the promise once response is handled
+            }
+          }
+        });
+
+        this.sendCommand(command, host, port);
+
       });
-    } catch (err) {
-      this.destroyClient();
-      this.log("Some error in sending request", err)
-    }
+    };
+
+    const executeCommands = async () => {
+      try {
+        await sendCommands(3003);
+        await sendCommands(3004);
+      } catch (error) {
+        this.log("This happens almost never.")
+      }
+    };
+
+    // Start executing commands sequentially
+    executeCommands();
+
+
   }
 }
 
