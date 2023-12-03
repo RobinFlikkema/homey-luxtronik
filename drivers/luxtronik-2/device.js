@@ -31,7 +31,7 @@ class LuxtronikDevice extends Device {
     this.energyInputCool = null;
     this.energyInputWater = null;
     this.energyInputPool = null;
-    
+
     this.energyCurrent = null;
 
     this.temperatureHotGas = null;
@@ -48,6 +48,9 @@ class LuxtronikDevice extends Device {
     this.water = null;
 
     this.operationMode = new LuxtronikOperationMode();
+
+    this.parametersArray = null;
+    this.calulationsArray = null;
 
     this.scan();
 
@@ -121,17 +124,39 @@ class LuxtronikDevice extends Device {
 
       this.log("Triggering setCapabilityValue")
 
-      if (this.energyTotal !== null) await this.setCapabilityValue('meter_power.total', this.energyTotal / 10).catch(this.error);
-      if (this.energyHeat !== null) await this.setCapabilityValue('meter_power.heat', this.energyHeat / 10).catch(this.error);
+      // if (this.energyTotal !== null) await this.setCapabilityValue('meter_power.total', this.energyTotal / 10).catch(this.error);
+
+      // This should only apply when firmware >x.88 is active; For now this is fixed by checking the energyTotal
+      // TODO: This should check a version variable;
+      if (this.calulationsArray !== null && this.calulationsArray[154] === 0) {
+        if (this.energyHeat !== null && this.parametersArray !== null) await this.setCapabilityValue('meter_power.heat', (this.energyHeat + this.parametersArray[1059]) / 10).catch(this.error);
+      } else {
+        if (this.energyHeat !== null) await this.setCapabilityValue('meter_power.heat', (this.energyHeat) / 10).catch(this.error);
+      }
       if (this.energyWater !== null) await this.setCapabilityValue('meter_power.water', this.energyWater / 10).catch(this.error);
       if (this.energyPool !== null) await this.setCapabilityValue('meter_power.pool', this.energyPool / 10).catch(this.error);
 
-      if (this.energyInputTotal !== null) await this.setCapabilityValue('meter_power.total', this.energyTotal / 100).catch(this.error);
-      if (this.energyInputHeat !== null) await this.setCapabilityValue('meter_power.heat', this.energyHeat / 100).catch(this.error);
-      if (this.energyInputCool !== null) await this.setCapabilityValue('meter_power.heat', this.energyCool / 100).catch(this.error);
-      if (this.energyInputWater !== null) await this.setCapabilityValue('meter_power.water', this.energyWater / 100).catch(this.error);
-      if (this.energyInputPool !== null) await this.setCapabilityValue('meter_power.pool', this.energyPool / 100).catch(this.error);
-      
+      if (this.parametersArray !== null && this.calulationsArray !== null && this.energyTotal !== null) {
+        this.log("Not null")
+        if (this.calulationsArray[154] === 0) {
+          this.log("Zero in energyTotal; Assuming newer firmware")
+          this.log(this.calulationsArray[151], this.calulationsArray[152], this.calulationsArray[153], this.parametersArray[1059])
+          this.energyTotal = (this.calulationsArray[151] + this.calulationsArray[152] + this.calulationsArray[153] + this.parametersArray[1059]);
+        } else {
+          this.log("Amount in energyTotal; Assuming older firmware")
+        }
+        await this.setCapabilityValue('meter_power.total', this.energyTotal / 10).catch(this.error);
+      } else {
+        this.log(this.parametersArray !== null, this.calulationsArray !== null, this.energyTotal !== null)
+      }
+
+
+      // if (this.energyInputTotal !== null) await this.setCapabilityValue('meter_power.total', this.energyTotal / 100).catch(this.error);
+      // if (this.energyInputHeat !== null) await this.setCapabilityValue('meter_power.heat', this.energyHeat / 100).catch(this.error);
+      // if (this.energyInputCool !== null) await this.setCapabilityValue('meter_power.heat', this.energyCool / 100).catch(this.error);
+      // if (this.energyInputWater !== null) await this.setCapabilityValue('meter_power.water', this.energyWater / 100).catch(this.error);
+      // if (this.energyInputPool !== null) await this.setCapabilityValue('meter_power.pool', this.energyPool / 100).catch(this.error);
+
       if (this.energyCurrent !== null) await this.setCapabilityValue('measure_power.current', this.energyCurrent).catch(this.error);
 
       if (this.temperatureOutdoor !== null) await this.setCapabilityValue('measure_temperature.outdoor', this.temperatureOutdoor / 10).catch(this.error);
@@ -280,14 +305,16 @@ class LuxtronikDevice extends Device {
                 this.log("PARAM POOL_ENERGY_INPUT" + array_parameter[1138]);
                 this.log("PARAM COOL_ENERGY_INPUT" + array_parameter[1139]);
                 this.log("PARAM SECOND_ENERGY_INPUT" + array_parameter[1140]);
-                let energyInputTotal = array_parameter[1136] + array_parameter[1137] + array_parameter[1138] + array_parameter[1139] +array_parameter[1140]
+                let energyInputTotal = array_parameter[1136] + array_parameter[1137] + array_parameter[1138] + array_parameter[1139] + array_parameter[1140]
                 this.log("PARAM TOTAL_ENERGY_INPUT" + energyInputTotal);
 
                 this.energyInputHeat = (array_parameter[1136]);
                 this.energyInputCool = (array_parameter[1139]);
                 this.energyInputWater = (array_parameter[1137]);
                 this.energyInputPool = (array_parameter[1138]);
-                this.energyInputTotal = (array_parameter[1136] + array_parameter[1137] + array_parameter[1138] + array_parameter[1139] +array_parameter[1140]);
+                this.energyInputTotal = (array_parameter[1136] + array_parameter[1137] + array_parameter[1138] + array_parameter[1139] + array_parameter[1140]);
+
+                this.parametersArray = array_parameter;
 
                 this.destroyClient();
                 resolve(); // Resolve the promise once response is handled
@@ -311,6 +338,7 @@ class LuxtronikDevice extends Device {
                 this.energyPool = (array_calculated[153]);
                 this.energyTotal = (array_calculated[154]);
 
+
                 this.energyCurrent = (array_calculated[257]);
 
                 this.temperatureOutdoor = (array_calculated[15]);
@@ -327,6 +355,7 @@ class LuxtronikDevice extends Device {
 
                 this.water = (array_calculated[173]);
 
+                this.calulationsArray = array_calculated;
 
                 this.operationMode.setOperationMode(array_calculated[80]);
 
