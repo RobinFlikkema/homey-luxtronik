@@ -10,5 +10,8 @@
   },
   "1.0.3": {
     "en": "Added support for Current Performance / \"Huidig Vermogen\""
+  },
+  "1.0.4": {
+    "en": "Added support for reading heatenergy in newer firmwares where it previously didnt display anything."
   }
 }
