@@ -172,6 +172,12 @@
             "nl": "Totale Warmteenergie Verwarming"
           }
         },
+        "meter_power.heat2": {
+          "title": {
+            "en": "Total Second Heating Power Usage",
+            "nl": "Totale Warmteenergie Tweede Verwarming"
+          }
+        },
         "meter_power.water": {
           "title": {
             "en": "Total Water Heating Power Usage",
