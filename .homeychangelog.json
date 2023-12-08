@@ -13,5 +13,8 @@
   },
   "1.0.4": {
     "en": "Added support for reading heatenergy in newer firmwares where it previously didnt display anything."
+  },
+  "1.0.5": {
+    "en": "Added support for Second Heating Source"
   }
 }
