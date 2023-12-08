@@ -20,6 +20,10 @@ class LuxtronikDevice extends Device {
       this.log('measure_power.current has not been added yet, adding...');
       await this.addCapability('measure_power.current');
     }
+    if (this.hasCapability('meter_power.heat2') === false) {
+      this.log('mmeter_power.heat2 has not been added yet, adding...');
+      await this.addCapability('meter_power.heat2');
+    }
 
     this.energyTotal = null;
     this.energyHeat = null;
@@ -28,6 +32,7 @@ class LuxtronikDevice extends Device {
 
     this.energyInputTotal = null;
     this.energyInputHeat = null;
+    this.energyInputHeat2 = null;
     this.energyInputCool = null;
     this.energyInputWater = null;
     this.energyInputPool = null;
@@ -135,6 +140,7 @@ class LuxtronikDevice extends Device {
       }
       if (this.energyWater !== null) await this.setCapabilityValue('meter_power.water', this.energyWater / 10).catch(this.error);
       if (this.energyPool !== null) await this.setCapabilityValue('meter_power.pool', this.energyPool / 10).catch(this.error);
+      if (this.parametersArray !== null) await this.setCapabilityValue('meter_power.heat2', this.parametersArray[1059] / 10).catch(this.error);
 
       if (this.parametersArray !== null && this.calulationsArray !== null && this.energyTotal !== null) {
         this.log("Not null")
